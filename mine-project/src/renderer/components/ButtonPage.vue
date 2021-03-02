@@ -23,6 +23,18 @@
         <button type="button" class="btn btn-outline-success" v-on:click="event_comp()">Count ME</button>
       </p>
     </div>
+    <div class="bs-component">
+      <h3>Group Button - Random Bomb</h3>
+      <p> Bomb Button is button #{{bomb_btn + 1}} </p>
+      <div class="bs-component mb-3">
+        <div class="btn-group" role="group" aria-level="Basic example">
+          <button v-for="(num, index) in group_btn" v-bind:key="num" 
+          type="button" class="btn btn-primary" v-on:click="isBomb(num)">
+            {{index+1}}
+          </button>
+        </div>
+      </div> 
+    </div>
   </div>
 </template>
 
@@ -33,7 +45,8 @@ export default {
     return {
       title: 'buttonpage',
       single_counter: 0,
-      comp_counter: 0
+      comp_counter: 0,
+      group_btn: [0, 0, 0]
     }
   },
   methods: {
@@ -45,11 +58,21 @@ export default {
     },
     event_comp: function () {
       this.comp_counter += 1
+    },
+    isBomb: function (num) {
+      if (num === -1) {
+        alert('BOMB!')
+      }
     }
   },
   computed: {
-    double_counter: function () {
+    double_counter: function (event) {
       return this.comp_counter * 2
+    },
+    bomb_btn: function (event) {
+      var rand = Math.floor(Math.random() * 3)
+      this.group_btn[rand] = -1
+      return rand
     }
   }
 }
