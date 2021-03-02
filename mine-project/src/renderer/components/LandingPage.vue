@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper">
+  <div id="wrapper" class="landingpage">
     <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
     <main>
       <div class="left-side">
@@ -33,7 +33,12 @@
   import SystemInformation from './LandingPage/SystemInformation'
 
   export default {
-    name: 'landing-page',
+    name: 'landingpage',
+    data () {
+      return {
+        title: 'landing'
+      }
+    },
     components: { SystemInformation },
     methods: {
       open (link) {
